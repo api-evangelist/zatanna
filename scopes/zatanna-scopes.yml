@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: https://api.zatanna.ai/.well-known/oauth-authorization-server
+docs: https://api.zatanna.ai/.well-known/oauth-protected-resource
+description: >-
+  OAuth 2.0 scopes advertised by Zatanna's authorization server (RFC 8414
+  metadata) and echoed by the MCP protected-resource metadata (RFC 9728). These
+  are OpenID Connect standard scopes plus offline_access for refresh tokens; no
+  Zatanna-specific resource scopes are published anonymously. No OpenAPI is
+  available, so scopes are taken verbatim from the discovery documents.
+schemes:
+  - name: Zatanna MCP OAuth
+    type: oauth2
+    grant_types: [authorization_code, refresh_token]
+    authorizationUrl: https://api.zatanna.ai/api/auth/mcp/authorize
+    tokenUrl: https://api.zatanna.ai/api/auth/mcp/token
+    protected_resource: well-known/zatanna-mcp-oauth-protected-resource.json
+    authorization_server: https://api.zatanna.ai
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication; issues an RS256-signed ID token identifying the subject.
+    schemes: [Zatanna MCP OAuth]
+  - scope: profile
+    description: Access to the end user's basic profile claims (e.g. name).
+    schemes: [Zatanna MCP OAuth]
+  - scope: email
+    description: Access to the end user's email and email_verified claims.
+    schemes: [Zatanna MCP OAuth]
+  - scope: offline_access
+    description: Grants a refresh token so the client can obtain new access tokens without user interaction.
+    schemes: [Zatanna MCP OAuth]

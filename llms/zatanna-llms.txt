@@ -1,0 +1,10 @@
+This file is generated from the site's source content. It is a curated index for AI assistants, not a crawler permissions file. For crawler permissions, see `/robots.txt`.
+
+## Core Pages
+
+- [Home](https://www.zatanna.ai/): Primary overview of the site.
+
+## Discovery
+
+- [Sitemap](https://www.zatanna.ai/sitemap-index.xml): Complete search-engine sitemap, if available.
+- [Robots policy](https://www.zatanna.ai/robots.txt): Crawler permissions for automated agents.

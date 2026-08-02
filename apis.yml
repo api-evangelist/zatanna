@@ -1,7 +1,29 @@
 aid: zatanna
 name: Zatanna
-description: Zatanna is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Zatanna is a Y Combinator (W2026) startup based in San Francisco that creates
+  APIs for software that doesn't have any. It reverse-engineers the back ends of
+  web-based cloud and on-prem software — ERPs (SAP), PMS/POS systems, insurance
+  portals, and marketplaces — by observing real workflows, reconstructing the
+  underlying request sequences, and hosting them as clean, callable APIs. Rather
+  than relying on slow browser automation or computer-use agents, Zatanna gives
+  AI agents faster, cheaper, and more reliable integrations, with a reliability
+  layer that handles session management, authentication, and change detection.
+  The agent-facing surface is a hosted, OAuth-protected Model Context Protocol
+  (MCP) server at api.zatanna.ai.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://raw.githubusercontent.com/api-evangelist/zatanna/refs/heads/main/apis.yml
 url: https://raw.githubusercontent.com/api-evangelist/zatanna/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +31,66 @@ x-backed-by:
 - y-combinator
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-yc-batch: W2026
+x-location: San Francisco, CA
+x-founders:
+- Tarun Vedula (CEO)
+- Alex Blackwell (CTO)
+- Rithvik Vanga
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1
 tags:
 - Company
-apis: []
+- API
+- MCP
+- AI Agents
+- Integration
+- Reverse Engineering
+- Automation
+- OAuth
+- Y Combinator
+apis:
+- name: Zatanna MCP Server
+  description: >-
+    Zatanna's hosted, remote Model Context Protocol (MCP) server — the
+    agent-facing surface of its reverse-engineered portal integrations. Live at
+    https://api.zatanna.ai/mcp over Streamable HTTP (JSON-RPC), gated by OAuth
+    2.0 (Authorization Code + PKCE, dynamic client registration) or a Zatanna
+    API key. The tool list is not enumerable without credentials.
+  humanURL: https://www.zatanna.ai/
+  baseURL: https://api.zatanna.ai
+  tags:
+  - MCP
+  - AI Agents
+  - OAuth
+  properties:
+  - type: MCPServer
+    url: mcp/zatanna-mcp.yml
+  - type: Authentication
+    url: authentication/zatanna-authentication.yml
+  - type: OAuthScopes
+    url: scopes/zatanna-scopes.yml
+  - type: Conformance
+    url: conformance/zatanna-conformance.yml
+common:
+- type: Website
+  url: https://www.zatanna.ai/
+- type: TermsOfService
+  url: https://www.zatanna.ai/terms
+- type: PrivacyPolicy
+  url: https://www.zatanna.ai/privacy
+- type: WellKnown
+  url: well-known/zatanna-well-known.yml
+- type: LLMsTxt
+  url: llms/zatanna-llms.txt
+- type: DomainSecurity
+  url: security/zatanna-domain-security.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

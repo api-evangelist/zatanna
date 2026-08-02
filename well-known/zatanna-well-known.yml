@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for Zatanna's hosts
+  (www.zatanna.ai marketing site and api.zatanna.ai API host). Status is the
+  HTTP code observed at fetch time. Only documents that returned a real,
+  correctly-typed payload were saved verbatim. The API host publishes RFC 8414
+  OAuth authorization-server metadata and RFC 9728 OAuth protected-resource
+  metadata that front Zatanna's hosted MCP server at https://api.zatanna.ai/mcp.
+hosts:
+  - host: https://api.zatanna.ai
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: application/json
+        file: zatanna-mcp-oauth-authorization-server.json
+        note: RFC 8414 OAuth 2.0 authorization-server metadata for the MCP server.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        type: application/json
+        file: zatanna-mcp-oauth-protected-resource.json
+        note: RFC 9728 OAuth 2.0 protected-resource metadata; resource is /mcp.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://www.zatanna.ai
+    documents:
+      - path: /llms.txt
+        status: 200
+        type: text/plain
+        file: ../llms/zatanna-llms.txt
+        note: Curated AI-assistant index (not a /.well-known/ path; listed for completeness).
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

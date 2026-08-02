@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  Derived from Zatanna's live discovery documents:
+  https://api.zatanna.ai/.well-known/oauth-authorization-server (RFC 8414),
+  https://api.zatanna.ai/.well-known/oauth-protected-resource (RFC 9728), the
+  MCP endpoint behaviour at https://api.zatanna.ai/mcp, and the MCP
+  authorization specification. No first-party OpenAPI is published.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      RFC 6749 Authorization Code flow with authorization, token, and
+      registration endpoints advertised in RFC 8414 authorization-server
+      metadata.
+  - id: oauth2-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported = [S256] in the authorization-server metadata (RFC 7636).
+  - id: oauth2-dynamic-client-registration
+    conforms: true
+    evidence: registration_endpoint present (https://api.zatanna.ai/api/auth/mcp/register), RFC 7591.
+  - id: oauth2-authorization-server-metadata
+    conforms: true
+    evidence: /.well-known/oauth-authorization-server returns valid RFC 8414 JSON.
+  - id: oauth2-protected-resource-metadata
+    conforms: true
+    evidence: >-
+      /.well-known/oauth-protected-resource returns valid RFC 9728 JSON and the
+      /mcp 401 challenge references it via WWW-Authenticate.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      openid/profile/email scopes, userinfo_endpoint, jwks_uri, and RS256
+      id_token_signing_alg_values_supported are present; behaves as an OIDC
+      provider even though /.well-known/openid-configuration returns 404.
+  - id: mcp-authorization
+    conforms: true
+    evidence: >-
+      /mcp returns 401 with WWW-Authenticate Bearer resource_metadata pointing
+      at RFC 9728 metadata, matching the Model Context Protocol authorization
+      spec for OAuth-protected remote servers.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      /mcp errors use a custom {"error":{"code","message"}} envelope, not
+      application/problem+json.

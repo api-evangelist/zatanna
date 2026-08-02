@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://api.zatanna.ai/.well-known/oauth-authorization-server
+description: >-
+  Authentication profile derived from Zatanna's live RFC 8414 OAuth 2.0
+  authorization-server metadata (https://api.zatanna.ai/.well-known/oauth-authorization-server)
+  and RFC 9728 protected-resource metadata. No first-party OpenAPI is published,
+  so this is drawn directly from the discovery documents. Two credential paths
+  are observed: OAuth 2.0 Authorization Code + PKCE (for MCP / agent clients)
+  and a Zatanna-issued API key (Bearer), which the /mcp 401 body explicitly
+  requests ("Valid API key required").
+summary:
+  types:
+  - oauth2
+  - http
+schemes:
+- name: zatannaOAuth
+  type: oauth2
+  flow: authorizationCode
+  authorizationUrl: https://api.zatanna.ai/api/auth/mcp/authorize
+  tokenUrl: https://api.zatanna.ai/api/auth/mcp/token
+  userinfoUrl: https://api.zatanna.ai/api/auth/mcp/userinfo
+  jwksUrl: https://api.zatanna.ai/api/auth/mcp/jwks
+  registrationUrl: https://api.zatanna.ai/api/auth/mcp/register
+  pkce: S256
+  grant_types: [authorization_code, refresh_token]
+  token_endpoint_auth_methods: [client_secret_basic, client_secret_post, none]
+  id_token_signing_alg: RS256
+  scopes: [openid, profile, email, offline_access]
+  description: >-
+    OAuth 2.0 Authorization Code with PKCE (S256), Dynamic Client Registration
+    (RFC 7591) enabled. Issues RS256-signed ID tokens; supports refresh tokens
+    via the offline_access scope. This is the MCP authorization surface.
+  source: https://api.zatanna.ai/.well-known/oauth-authorization-server
+- name: zatannaApiKey
+  type: http
+  scheme: bearer
+  description: >-
+    Zatanna-issued API key presented as a Bearer token in the Authorization
+    header. Observed from the /mcp endpoint's 401 response body
+    ("Valid API key required") as an alternative to interactive OAuth.
+  source: https://api.zatanna.ai/mcp
