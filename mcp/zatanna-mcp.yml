@@ -1,6 +1,7 @@
 generated: '2026-07-21'
 method: searched
-status: available
+status: published
+status_raw: available
 source: https://api.zatanna.ai/.well-known/oauth-protected-resource
 description: >-
   Zatanna operates a hosted, remote MCP server at https://api.zatanna.ai/mcp.
