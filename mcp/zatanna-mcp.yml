@@ -3,17 +3,14 @@ method: searched
 status: published
 status_raw: available
 source: https://api.zatanna.ai/.well-known/oauth-protected-resource
-description: >-
-  Zatanna operates a hosted, remote MCP server at https://api.zatanna.ai/mcp.
-  The endpoint is live: an unauthenticated POST returns HTTP 401 with a
-  WWW-Authenticate Bearer challenge pointing at the RFC 9728 protected-resource
-  metadata (https://api.zatanna.ai/.well-known/oauth-protected-resource), and a
-  GET returns 405, consistent with a Streamable-HTTP JSON-RPC MCP transport.
-  Access is gated by OAuth 2.0 (authorization server https://api.zatanna.ai,
-  RFC 8414 metadata) or a Zatanna API key, so the tool list could not be
-  enumerated without credentials. Zatanna's product is turning credentialed
-  web portals into callable APIs for AI agents, so this MCP server is the
-  agent-facing surface of those reverse-engineered integrations.
+description: 'Zatanna operates a hosted, remote MCP server at https://api.zatanna.ai/mcp. The endpoint
+  is live: an unauthenticated POST returns HTTP 401 with a WWW-Authenticate Bearer challenge pointing
+  at the RFC 9728 protected-resource metadata (https://api.zatanna.ai/.well-known/oauth-protected-resource),
+  and a GET returns 405, consistent with a Streamable-HTTP JSON-RPC MCP transport. Access is gated by
+  OAuth 2.0 (authorization server https://api.zatanna.ai, RFC 8414 metadata) or a Zatanna API key, so
+  the tool list could not be enumerated without credentials. Zatanna''s product is turning credentialed
+  web portals into callable APIs for AI agents, so this MCP server is the agent-facing surface of those
+  reverse-engineered integrations.'
 server:
   name: zatanna
   transport: http
@@ -23,15 +20,26 @@ server:
   protected_resource: well-known/zatanna-mcp-oauth-protected-resource.json
   authorization_server: https://api.zatanna.ai
   authorization_server_metadata: well-known/zatanna-mcp-oauth-authorization-server.json
-  scopes_supported: [openid, profile, email, offline_access]
+  scopes_supported:
+  - openid
+  - profile
+  - email
+  - offline_access
   observed:
-    - probe: POST /mcp (no auth)
-      status: 401
-      detail: 'www-authenticate: Bearer resource_metadata="https://api.zatanna.ai/.well-known/oauth-protected-resource"; body {"error":{"code":"unauthorized","message":"Valid API key required"}}'
-    - probe: GET /mcp
-      status: 405
-      detail: Method Not Allowed (endpoint present; expects POST/JSON-RPC).
+  - probe: POST /mcp (no auth)
+    status: 401
+    detail: 'www-authenticate: Bearer resource_metadata="https://api.zatanna.ai/.well-known/oauth-protected-resource";
+      body {"error":{"code":"unauthorized","message":"Valid API key required"}}'
+  - probe: GET /mcp
+    status: 405
+    detail: Method Not Allowed (endpoint present; expects POST/JSON-RPC).
 tools: []
-tools_note: >-
-  Tool list not captured — the MCP endpoint requires a valid OAuth token or API
-  key and no tool manifest is published anonymously. No fabrication.
+tools_note: Tool list not captured — the MCP endpoint requires a valid OAuth token or API key and no tool
+  manifest is published anonymously. No fabrication.
+deployment:
+  mode: remote
+  endpoint: https://api.zatanna.ai/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
