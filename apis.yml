@@ -47,6 +47,15 @@ x-enrichment:
   pass: local-v1
 tags:
 - Company
+- MCP
+- AI Agents
+- Integration
+- Reverse Engineering
+- Automation
+- Authentication
+- Y Combinator
+tags_raw:
+- Company
 - API
 - MCP
 - AI Agents
@@ -66,6 +75,10 @@ apis:
   humanURL: https://www.zatanna.ai/
   baseURL: https://api.zatanna.ai
   tags:
+  - MCP
+  - AI Agents
+  - Authentication
+  tags_raw:
   - MCP
   - AI Agents
   - OAuth
