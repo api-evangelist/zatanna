@@ -11,6 +11,17 @@ description: >-
   layer that handles session management, authentication, and change detection.
   The agent-facing surface is a hosted, OAuth-protected Model Context Protocol
   (MCP) server at api.zatanna.ai.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
