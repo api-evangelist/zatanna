@@ -43,3 +43,21 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://api.zatanna.ai/mcp
+  metadata_url: https://api.zatanna.ai/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://api.zatanna.ai/mcp
+    authorization_servers:
+    - https://api.zatanna.ai
+    scopes_supported:
+    - openid
+    - profile
+    - email
+    - offline_access
+    bearer_methods_supported:
+    - header
